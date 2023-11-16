@@ -17,17 +17,6 @@ on:
 
 jobs:
 
-  runner-job:
-    runs-on: ubuntu-latest
-    #container: llasuka/mysql
-    services:
-      mysql:
-        image: llasuka/mysql
-        env:
-          MYSQL_ROOT_PASSWORD: 123456
-        ports:
-          - 3306:3306
-
   build:
 
     runs-on: ubuntu-latest
