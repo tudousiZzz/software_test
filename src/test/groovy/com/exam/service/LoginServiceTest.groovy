@@ -3,8 +3,10 @@ package com.exam.service
 import com.exam.entity.Student
 import com.exam.mapper.LoginMapper
 import com.exam.serviceimpl.LoginServiceImpl
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
+@SpringBootTest
 class LoginServiceTest extends Specification {
 
     LoginMapper loginMapper = Mock(LoginMapper)
