@@ -52,5 +52,20 @@ class LoginServiceImplTest extends Specification {
         then:
         result == new Student()
     }
+
+    def "test student Login1"() {
+        given:
+        Student expectResult = new Student()
+        expectResult.setPwd("123456")
+        when(loginMapper.studentLogin(anyInt(), anyString())).thenReturn(expectResult)
+
+        when:
+        Student result = loginServiceImpl.studentLogin(0, "password")
+
+        then:
+        result.getPwd().length() >= 5
+        result.getPwd().length() <= 20
+    }
+
 }
 
