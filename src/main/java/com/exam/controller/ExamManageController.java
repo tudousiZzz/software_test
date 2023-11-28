@@ -19,7 +19,7 @@ public class ExamManageController {
     public ApiResult findAll(){
         System.out.println("不分页查询所有试卷");
         ApiResult apiResult;
-        apiResult = ApiResultHandler.buildApiResult(200, "请求成功！", examManageService.findAll());
+        apiResult = ApiResultHandler.buildApiResult(200, "请求成功", examManageService.findAll());
         return apiResult;
     }
 
@@ -29,7 +29,7 @@ public class ExamManageController {
         ApiResult apiResult;
         Page<ExamManage> examManage = new Page<>(page,size);
         IPage<ExamManage> all = examManageService.findAll(examManage);
-        apiResult = ApiResultHandler.buildApiResult(200, "请求成功！", all);
+        apiResult = ApiResultHandler.buildApiResult(200, "请求成功", all);
         return apiResult;
     }
 
@@ -40,7 +40,7 @@ public class ExamManageController {
         if(res == null) {
             return ApiResultHandler.buildApiResult(10000,"考试编号不存在",null);
         }
-        return ApiResultHandler.buildApiResult(200,"请求成功！",res);
+        return ApiResultHandler.buildApiResult(200,"请求成功",res);
     }
 
     @DeleteMapping("/exam/{examCode}")
