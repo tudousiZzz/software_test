@@ -85,6 +85,36 @@ class ExamManageServiceImplTest extends Specification {
         result == 0
     }
 
+    def stack = new Stack()
+
+    def "size"() {
+        expect:
+        stack.size() == 0
+    }
+
+    def "pop"() {
+        when:
+        stack.pop()
+        then:
+        thrown(EmptyStackException)
+    }
+
+    def "peek"() {
+        when:
+        stack.peek()
+        then:
+        thrown(EmptyStackException)
+    }
+
+    def "push"() {
+        when:
+        stack.push("elem")
+
+        then:
+        stack.size() == old(stack.size()) + 1
+        stack.peek() == "elem"
+    }
+
     def "test find Only Paper Id"() {
         given:
         when(examManageMapper.findOnlyPaperId()).thenReturn(new ExamManage())
