@@ -37,6 +37,12 @@ public class MultiQuestionServiceImpl implements MultiQuestionService {
 
     @Override
     public List<Integer> findBySubject(String subject, Integer pageNo) {
+        pageNo = getPageNo(pageNo);
         return multiQuestionMapper.findBySubject(subject,pageNo);
+    }
+
+    private  Integer getPageNo(Integer pageNo) {
+        if (pageNo < 0) pageNo = 0;
+        return pageNo;
     }
 }

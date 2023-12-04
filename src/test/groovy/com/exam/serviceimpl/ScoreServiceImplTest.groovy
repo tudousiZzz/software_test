@@ -22,9 +22,11 @@ class ScoreServiceImplTest extends Specification {
     def "test add"() {
         given:
         when(scoreMapper.add(any())).thenReturn(0)
-
+        def score = new Score();
+        score.setPtScore(20)
+        score.setEtScore(40)
         when:
-        int result = scoreServiceImpl.add(new Score())
+        int result = scoreServiceImpl.add(score)
 
         then:
         result == 0

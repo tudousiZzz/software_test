@@ -73,5 +73,19 @@ class MultiQuestionServiceImplTest extends Specification {
         then:
         result == [0]
     }
+
+    def "test find By Subject Score"() {
+
+        given:
+        when(multiQuestionMapper.findBySubject(anyString(), anyInt())).thenReturn([0])
+
+        when:
+        def pageNo = -1;
+        List<Integer> result = multiQuestionServiceImpl.findBySubject("subject", pageNo)
+
+        then:
+        result == [0]
+    }
+
 }
 

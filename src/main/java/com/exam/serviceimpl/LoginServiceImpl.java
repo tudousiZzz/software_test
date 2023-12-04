@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
         return loginMapper.studentLogin(username,password);
     }
 
-    private Student studentLogin1(Integer username, String password) throws Exception {
+    private Student studentLoginCheckPassword(Integer username, String password) throws Exception {
         assert !password.isEmpty();
         if (password.length() >= 5 && password.length() <= 20) {
             throw new Exception("密码长度错误");

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exam.entity.Score;
 import com.exam.mapper.ScoreMapper;
 import com.exam.service.ScoreService;
+import com.exam.util.ScoreUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class ScoreServiceImpl implements ScoreService {
     private ScoreMapper scoreMapper;
     @Override
     public int add(Score score) {
+        ScoreUtil.check(score);
         return scoreMapper.add(score);
     }
 
