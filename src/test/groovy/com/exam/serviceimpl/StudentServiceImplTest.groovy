@@ -32,13 +32,13 @@ class StudentServiceImplTest extends Specification {
 
     def "test find By Id"() {
         given:
-        when(studentMapper.findById(anyInt())).thenReturn(new Student())
+        when(studentMapper.findById(anyInt())).thenReturn(new Student(studentId: 0))
 
         when:
         Student result = studentServiceImpl.findById(0)
 
         then:
-        result == new Student()
+        result.getStudentId() == 0
     }
 
     def "test delete By Id"() {
@@ -83,6 +83,29 @@ class StudentServiceImplTest extends Specification {
 
         then:
         result == 0
+    }
+
+    @Unroll
+    def "input 学生id:#id, 返回的学生姓名:#Name, 返回的成绩的两倍:#gradeMultiTwo"() {
+        given: "Mock返回的学生信息"
+        when(studentMapper.findById(anyInt())).thenReturn(student)
+
+        when: "获取学生信息"
+        def result = studentServiceImpl.findById(id)
+
+        then: "验证返回结果"
+        with(result) {
+            studentName == Name
+            grade == gradeMultiTwo
+        }
+        where: "经典之处：表格方式验证学生信息的分支场景"
+        id | student                   || Name  | gradeMultiTwo
+        1  | getStudent(1, "张三", "60") || "张三" | "120"
+        2  | getStudent(2, "李四", "40") || "李四" | "80"
+    }
+
+    def getStudent(def id, def name, def grade) {
+        return new Student(studentId: id, studentName: name, grade: grade)
     }
 }
 

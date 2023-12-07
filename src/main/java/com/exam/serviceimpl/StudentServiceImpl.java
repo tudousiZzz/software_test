@@ -23,7 +23,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findById(Integer studentId) {
-        return studentMapper.findById(studentId);
+        Student student = studentMapper.findById(studentId);
+
+        if (student == null || student.getGrade() == null) return student;
+
+        student.setGrade(String.valueOf(Integer.valueOf(student.getGrade()) * 2));
+
+        return student;
     }
 
     @Override
